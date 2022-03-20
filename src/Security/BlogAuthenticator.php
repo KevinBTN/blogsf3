@@ -50,7 +50,7 @@ class BlogAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('/article'));
+        return new RedirectResponse($this->urlGenerator->generate('app_article_index'));
     }
 
     protected function getLoginUrl(Request $request): string

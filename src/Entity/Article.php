@@ -75,6 +75,7 @@ class Article
     {
         return $this->author;
     }
+    
 
     public function setAuthor(?User $author): self
     {

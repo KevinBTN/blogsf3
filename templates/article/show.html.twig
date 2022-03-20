@@ -3,32 +3,37 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <div class="blog-single gray-bg">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-lg-8 m-15px-tb">
+                    <article class="article">
+                        <div class="article-img">
+                            <img src="https://via.placeholder.com/800x350/87CEFA/000000" title="" alt="">
+                        </div>
+                        <div class="article-title">
+                            <h6><a href="#">Lifestyle</a></h6>
+                            <h2>{{ article.title }}</h2>
+                            <div class="media">
+                                <div class="media-body">
+                                    <label>{{ article.author }}</label>
+                                    <span>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <p>{{ article.content }}</p>                            
+                        </div>
+                    </article>
+                <div class="col-lg-4 m-15px-tb blog-aside">
+                        {% if is_granted('ROLE_USER') %}
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_article_edit', {'id': article.id}) }}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('app_article_delete', {'id': article.id}) }}">Delete</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article.content }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_article_index') }}">back to list</a>
-
-    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-
-    {{ include('article/_delete_form.html.twig') }}
+        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
